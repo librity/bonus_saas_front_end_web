@@ -2,8 +2,8 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-export default function LogIn() {
+export default function SignIn() {
   return (
-    <div />
+    <div>SignIn</div>
   );
 }
