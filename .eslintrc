@@ -27,7 +27,8 @@
     "implicit-arrow-linebreak": "off",
     "object-curly-newline": "off",
     "comma-dangle": "off",
-    "react/state-in-constructor": "off"
+    "react/state-in-constructor": "off",
+    "import/no-cycle": "off"
   },
   "settings": {
     "import/resolver": {
