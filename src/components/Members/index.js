@@ -14,10 +14,17 @@ import { MembersList } from './styles';
 class Members extends Component {
   static propTypes = {
     closeMembersModal: PropTypes.func.isRequired,
+    getMembersRequest: PropTypes.func.isRequired,
   };
 
+  componentDidMount() {
+    const { getMembersRequest } = this.props;
+
+    getMembersRequest();
+  }
+
   render() {
-    const { closeMembersModal } = this.props;
+    const { closeMembersModal, members } = this.props;
 
     return (
       <Modal size="big">
@@ -25,9 +32,11 @@ class Members extends Component {
 
         <form>
           <MembersList>
-            <li>
-              <strong>Luisito</strong>
-            </li>
+            {members.data.map(member => (
+              <li key={member.id}>
+                <strong>{member.user.name}</strong>
+              </li>
+            ))}
           </MembersList>
 
           <Button onClick={closeMembersModal} filled={false} colors="gray">
@@ -39,12 +48,11 @@ class Members extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   activeTeam: state.teams.active,
-//   projects: state.projects,
-// });
+const mapStateToProps = state => ({
+  members: state.members,
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(MembersActions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Members);
+export default connect(mapStateToProps, mapDispatchToProps)(Members);
